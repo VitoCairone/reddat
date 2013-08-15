@@ -5,10 +5,12 @@ class SessionsController < ApplicationController
   end
 
   def new
+    @signin_page = true
     render :new
   end
 
-  def delete
+  def destroy
     logout
+    redirect_to new_session_url
   end
 end

@@ -8,12 +8,16 @@
 </head>
 <body>
 
-<% if logged_in? %>
-	Logged In As: <%= current_user.name %>
-<% else %>
-  Not Logged In
+<% unless @signin_page %>
+	<% if logged_in? %>
+		Logged In As: <%= current_user.name %> |
+		<%= link_to "Sign Out", session_url, :method => :delete %>
+	<% else %>
+	  Not Logged In |
+		<%= link_to "Sign In", new_session_url %>
+	<% end %>
+	<hr>
 <% end %>
-<hr>
 
 <%= yield %>
 
