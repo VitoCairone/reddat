@@ -1,0 +1,10 @@
+<h1>Subs Index</h1>
+
+<ul>
+	<% Sub.all.each do |sub| %>
+	  <% @sub = sub %>
+		<li><%= link_to "#{@sub.name}", sub_url(@sub) %></li>
+	<% end %>
+</ul>
+
+<%= link_to "Add Sub", new_sub_url %>

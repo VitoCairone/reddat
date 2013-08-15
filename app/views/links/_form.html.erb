@@ -1,0 +1,33 @@
+<%= form_for @link do |f| %>
+	<%= f.label :title %>:
+	<%= f.text_field :title %><br>
+
+	<%= f.label :url %>:
+	<%= f.text_field :url %><br>
+
+	<%= f.label :text %>:
+	<%= f.text_field :text %><br>
+
+	<%= render "show_votes" %>
+
+	<!-- Sub Selection -->
+
+	<% Sub.all.each do |sub| %>
+	<% @present_subs = @link.sub_ids %>
+	<% @sub = sub %>
+	  <input
+			type="checkbox"
+			name="link[sub_ids][]"
+			id="link_sub_<%=@sub.id%>"
+			value="<%=@sub.id%>"
+			<%= "checked" if @present_subs.include?(@sub.id) %>
+		>
+		<label for="link_sub_<%=@sub.id%>">
+			<%=@sub.name%>
+		</label>
+	<% end %>
+	<input type="hidden" name="link[sub_ids][]" value="">
+	<br>
+
+	<%= f.submit %>
+<% end %>

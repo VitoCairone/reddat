@@ -1,0 +1,17 @@
+<%= form_for @sub do |f| %>
+	<%= f.label :name %>:
+	<%= f.text_field :name %><br>
+
+	<%= f.label :moderator %>:
+	<select name="sub[moderator]" id="sub_moderator">
+		<% User.all.each do |user| %>
+		  <option
+			  value="<%=user.id%>"
+			>
+			<%= user.name %>
+			</option>
+		<% end %>
+	</select>
+
+	<%= f.submit %>
+<% end %>

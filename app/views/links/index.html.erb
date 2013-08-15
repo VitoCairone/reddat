@@ -1,0 +1,10 @@
+<h1>Links Index</h1>
+
+<ul>
+	<% Link.all.each do |link| %>
+	  <% @link = link %>
+		<%= render "shortform" %>
+	<% end %>
+</ul>
+
+<%= link_to "Add Link", new_link_url %>

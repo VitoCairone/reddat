@@ -1,0 +1,9 @@
+<h1>Users Index</h1>
+
+<ul>
+	<% User.all.each do |user| %>
+		<li><%= link_to "#{user.name}", user_url(user) %></li>
+	<% end %>
+</ul>
+
+<%= link_to "Add User", new_user_url %>

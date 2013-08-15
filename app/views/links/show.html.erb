@@ -1,0 +1,10 @@
+<h1>Link</h1>
+
+Title: <%= @link.title %><br>
+Text: <%= @link.text %><br>
+URL: <%= link_to "#{@link.url}", @link.url %><br>
+Subs: <%= @link.subs.map { |sub| sub.name }.join(", ") %><br>
+
+<%= render "show_votes" %>
+
+<%= link_to "Edit", edit_link_url %>

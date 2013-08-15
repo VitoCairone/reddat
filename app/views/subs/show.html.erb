@@ -1,0 +1,9 @@
+<h1><%= @sub.name %> Sub</h1>
+
+<% @links = @sub.links %>
+<% @links.each do |link| %>
+  <% @link = link %>
+	<%= render "links/shortform" %>
+<% end %>
+
+<%= link_to "Edit", edit_sub_url %>

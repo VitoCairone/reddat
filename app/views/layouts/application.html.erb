@@ -16,8 +16,12 @@
 	  Not Logged In |
 		<%= link_to "Sign In", new_session_url %>
 	<% end %>
-	<hr>
+	--
 <% end %>
+<%= link_to "Users Index", users_url %> |
+<%= link_to "Subs Index", subs_url %> |
+<%= link_to "Links Index", links_url %>
+<hr>
 
 <%= yield %>
 
