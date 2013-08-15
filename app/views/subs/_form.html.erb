@@ -2,6 +2,7 @@
 	<%= f.label :name %>:
 	<%= f.text_field :name %><br>
 
+	<!-- TODO: select current moderator when editting -->
 	<%= f.label :moderator %>:
 	<select name="sub[moderator]" id="sub_moderator">
 		<% User.all.each do |user| %>
@@ -12,6 +13,43 @@
 			</option>
 		<% end %>
 	</select>
+
+	<% if @allow_simulpost %>
+		<h2>Links!</h2>
+		<% 5.times do |i| %>
+			<b># <%=i%></b>
+			<br>
+			<label for="sub_links_attributes_<%=i%>_title">
+				Title
+			</label>
+			<input type="text"
+				name="sub[links_attributes][<%=i%>][title]"
+				id="sub_links_attributes_<%=i%>_title"
+			>
+			<br>
+			<label for="sub_links_attributes_<%=i%>_url">
+				URL
+			</label>
+			<input type="text"
+				name="sub[links_attributes][<%=i%>][url]"
+				id="sub_links_attributes_<%=i%>_url"
+			>
+			<br>
+			<label for="sub_links_attributes_<%=i%>_text">
+				Text
+			</label>
+			<input type="text"
+				name="sub[links_attributes][<%=i%>][text]"
+				id="sub_links_attributes_<%=i%>_text"
+			>
+			<input type="hidden"
+				name="sub[links_attributes][<%=i%>][sub_ids][]"
+				value="<%=@sub.id%>"
+			>
+			<br>
+			<br>
+		<% end %>
+	<% end %>
 
 	<%= f.submit %>
 <% end %>
