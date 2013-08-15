@@ -10,6 +10,9 @@ class SubsController < ApplicationController
 
   def create
     #params[:sub][:moderator] = current_user.id #if creator is mod by default
+
+    # this block clears out the sub_ids from any otherwise blank new links
+    # so that they can be rejected properly
     links_attrs = params[:sub][:links_attributes]
     5.times do |i|
       link_attr = links_attrs[i.to_s]
@@ -19,6 +22,7 @@ class SubsController < ApplicationController
         link_attr[:sub_ids] = nil
       end
     end
+
     @sub = Sub.new(params[:sub])
     if @sub.save
       redirect_to sub_url(@sub)

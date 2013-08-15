@@ -3,7 +3,7 @@ require 'bcrypt'
 class User < ActiveRecord::Base
   attr_accessible :name, :password, :session_token
 
-  has_many :sub_memberships
+  has_many :sub_memberships, dependent: :destroy
 
   has_many :subs, through: :sub_memberships
 

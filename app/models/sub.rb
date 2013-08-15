@@ -1,9 +1,9 @@
 class Sub < ActiveRecord::Base
   attr_accessible :name, :moderator, :links_attributes
 
-  has_many :sub_memberships
+  has_many :sub_memberships, dependent: :destroy
 
-  has_many :sub_links
+  has_many :sub_links, dependent: :destroy
 
   has_many :links, through: :sub_links, source: :link
 

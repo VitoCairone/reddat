@@ -2,7 +2,7 @@ class Link < ActiveRecord::Base
   attr_accessible :downvotes, :text, :title, :upvotes,
                   :url, :user_id, :sub_ids
 
-  has_many :sub_links
+  has_many :sub_links, dependent: :destroy
 
   has_many :subs, through: :sub_links
 
