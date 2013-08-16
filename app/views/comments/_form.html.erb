@@ -1,0 +1,19 @@
+<%= form_for @comment do |f| %>
+	<%= f.label :title %>:
+	<%= f.text_field :title %><br>
+
+	<%= f.label :body %>:
+	<%= f.text_area :body %><br>
+
+	<input
+		type="hidden"
+		name="comment[parent_comment_id]"
+		value="<%= params[:parent] %>"
+	>
+	<input
+		type="hidden"
+		name="comment[link_id]"
+		value="<%= params[:link] %>"
+	>
+	<%= f.submit %>
+<% end %>

@@ -7,4 +7,16 @@ Subs: <%= @link.subs.map { |sub| sub.name }.join(", ") %><br>
 
 <%= render "show_votes" %>
 
+<%= link_to "Reply", new_comment_url(link: @link.id, parent: nil) %>
+<% comments_list = @link.comments_by_parent %>
+<% unless comments_list[nil].count == 0 %>
+	<ul>
+	<% comments_list[nil].each do |top_comment| %>
+	  <%= render partial: "comment",
+		  locals: { comment: top_comment, comments_list: comments_list} %>
+	<% end %>
+	</ul>
+<% end %>
+
+
 <%= link_to "Edit", edit_link_url %>

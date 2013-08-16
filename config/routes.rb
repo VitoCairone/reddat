@@ -3,4 +3,5 @@ Reddat::Application.routes.draw do
   resource :session, only: [:create, :new, :destroy]
   resources :links
   resources :subs
+  resources :comments
 end

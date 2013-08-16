@@ -1,0 +1,14 @@
+<li>
+<%= comment.title %><br>
+by <%= comment.user.name %><br>
+<%= comment.body %><br>
+<%= link_to "Reply", new_comment_url(link: @link.id, parent: comment.id) %></h3>
+</li>
+<% unless comments_list[comment.id].count == 0 %>
+	<ul>
+		<% comments_list[comment.id].each do |child_comment| %>
+		  <%= render partial: "comment",
+			  locals: { comment: child_comment, comments_list: comments_list} %>
+		<% end %>
+	</ul>
+<% end %>

@@ -1,11 +1,7 @@
 class SessionsController < ApplicationController
   def create
     login
-    if logged_in?
-      redirect_to user_url(current_user)
-    else
-      render :new
-    end
+    redirect_to user_url(current_user) if logged_in?
   end
 
   def new

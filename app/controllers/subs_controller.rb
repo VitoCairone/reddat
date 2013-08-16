@@ -1,11 +1,15 @@
 class SubsController < ApplicationController
 
   before_filter :ensure_logged_in, except: [:index, :show]
-  before_filter :ensure_moderator, only: [:edit, :update]
+  before_filter :ensure_moderator, only: [:edit, :update, :destroy]
 
   def ensure_moderator
     @sub = Sub.find(params[:id])
-    redirect_to :index unless @sub.moderator == current_user.id
+    unless @sub.moderator == current_user.id
+      flash[:errors] ||= []
+      flash[:errors] << "You are not the owner of that sub."
+      redirect_to sub_url(@sub)
+    end
   end
 
   def create
@@ -62,7 +66,7 @@ class SubsController < ApplicationController
   end
 
   def destroy
-    @sub = Sub.find(params[:id])
+    #@sub = Sub.find(params[:id]) # set by filter
     @sub.delete
     redirect_to subs_url
   end

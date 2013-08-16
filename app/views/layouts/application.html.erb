@@ -23,6 +23,10 @@
 <%= link_to "Links Index", links_url %>
 <hr>
 
+<% if flash[:errors] %>
+	<font color="red" size="+2"><b><%= flash[:errors].join(" | ") %></b></font>
+<% end %>
+
 <%= yield %>
 
 </body>

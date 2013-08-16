@@ -8,8 +8,6 @@ module ApplicationHelper
 
   def logout
     @user = current_user
-
-    # valid tokens are 16 characters
     session[:session_token] = SecureRandom.urlsafe_base64(10)
     @user.session_token = SecureRandom.urlsafe_base64(12)
     @user.save!
@@ -20,7 +18,7 @@ module ApplicationHelper
     if @user && @user.password == params[:user][:password]
       give_token
     else
-      redirect_to new_session_url
+      render :new
     end
   end
 
