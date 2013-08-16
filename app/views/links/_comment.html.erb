@@ -1,14 +1,21 @@
 <li>
-<%= comment.title %><br>
-by <%= comment.user.name %><br>
-<%= comment.body %><br>
-<%= link_to "Reply", new_comment_url(link: @link.id, parent: comment.id) %></h3>
+	<%= comment.title %>
+	<font size="-1"> -- by <%= comment.user.name %>
+		<%= link_to "Reply", new_comment_url(link: @link.id, parent: comment.id) %>
+		<% if @current_user.id == comment.user.id %>
+			<%= link_to "Edit", edit_comment_url(comment) %>
+			<%= link_to "Delete", comment_url(comment), method: :delete %>
+		<% end %>
+	</font><br>
+	<%= comment.body %>
 </li>
 <% unless comments_list[comment.id].count == 0 %>
 	<ul>
 		<% comments_list[comment.id].each do |child_comment| %>
 		  <%= render partial: "comment",
-			  locals: { comment: child_comment, comments_list: comments_list} %>
+			  locals: { comment: child_comment,
+									comments_list: comments_list}
+			%>
 		<% end %>
 	</ul>
 <% end %>

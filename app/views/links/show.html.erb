@@ -1,6 +1,5 @@
-<h1>Link</h1>
+<h1>Link: <%= @link.title %></h1>
 
-Title: <%= @link.title %><br>
 Text: <%= @link.text %><br>
 URL: <%= link_to "#{@link.url}", @link.url %><br>
 Subs: <%= @link.subs.map { |sub| sub.name }.join(", ") %><br>
@@ -13,10 +12,10 @@ Subs: <%= @link.subs.map { |sub| sub.name }.join(", ") %><br>
 	<ul>
 	<% comments_list[nil].each do |top_comment| %>
 	  <%= render partial: "comment",
-		  locals: { comment: top_comment, comments_list: comments_list} %>
+		  locals: { comment: top_comment, comments_list: comments_list } %>
 	<% end %>
 	</ul>
 <% end %>
 
 
-<%= link_to "Edit", edit_link_url %>
+<%= link_to "Edit Link", edit_link_url %>

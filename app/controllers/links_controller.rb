@@ -25,6 +25,7 @@ class LinksController < ApplicationController
   end
 
   def show
+    current_user #ensures @current_user set
     @link = Link.includes(:comments => :user).find(params[:id])
     render :show
     #flash[:link_id] = @link.id #TODO: try moving this before #show
@@ -41,7 +42,7 @@ class LinksController < ApplicationController
   end
 
   def edit
-     #@link = Link.find(params[:id]) # set by filter
+    #@link = Link.find(params[:id]) # set by filter
     render :edit
   end
 
@@ -56,7 +57,7 @@ class LinksController < ApplicationController
   end
 
   def destroy
-     #@link = Link.find(params[:id]) # set by filter
+    #@link = Link.find(params[:id]) # set by filter
     @link.delete
     redirect_to links_url
   end

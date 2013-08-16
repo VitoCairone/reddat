@@ -3,10 +3,12 @@ class CommentsController < ApplicationController
   before_filter :ensure_owner, only: [:edit, :update, :destroy]
 
   def ensure_owner
-    flash[:errors] ||= []
-    flash[:errors] << "You are not the owner of that comment."
     @comment = Comment.find(params[:id])
-    redirect_to comment_url(@comment) unless @comment.user_id == current_user.id
+    unless @comment.user_id == current_user.id
+      flash[:errors] ||= []
+      flash[:errors] << "You are not the owner of that comment."
+      redirect_to comment_url(@comment)
+    end
   end
 
   def create
@@ -52,6 +54,6 @@ class CommentsController < ApplicationController
   def destroy
      #@comment = Comment.find(params[:id]) # set by filter
     @comment.delete
-    redirect_to comments_url
+    redirect_to links_url
   end
 end
