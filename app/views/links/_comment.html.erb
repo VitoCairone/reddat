@@ -11,7 +11,7 @@
 <% unless comments_list[comment.id].count == 0 %>
 	<div style="padding-left: <%=padding%>px;">
 		<% comments_list[comment.id].each do |child_comment| %>
-		  <%= render partial: "comment",
+		  <%= render partial: "links/comment",
 			  locals: { comment: child_comment,
 									comments_list: comments_list,
 									padding: padding + 20}
