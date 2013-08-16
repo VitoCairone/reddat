@@ -21,6 +21,10 @@ class Link < ActiveRecord::Base
     comments_hash
   end
 
+  # Representing upvotes and downvotes as data memers of the Link is, strictly
+  # speaking, slightly undesirable because it is redundant with an association
+  # collecting UserVotes objects, but it is much faster since we
+  # need never generate SQL queries to check vote values.
   def vote_up
     self.upvotes += 1
   end

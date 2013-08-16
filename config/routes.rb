@@ -4,4 +4,7 @@ Reddat::Application.routes.draw do
   resources :links
   resources :subs
   resources :comments
+
+  get '/links/:id/upvote', to: 'links#upvote', as: 'link'
+  get '/links/:id/downvote', to: 'links#downvote', as: 'link'
 end
