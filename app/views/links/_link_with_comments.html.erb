@@ -1,0 +1,23 @@
+<hr>
+<div style="background-color:#EEEEFF;">
+	<%= link_to @link.title, @link.url %>
+	<%= render "links/show_votes" %>
+	<font size=-1>
+	<%= link_to "Reply", new_comment_url(link: @link.id, parent: nil) %>
+	<%= link_to "Edit", edit_link_url(@link) %>
+	</font><br>
+	<% if @link.text %>
+	  <%= @link.text %><br>
+	<% end %>
+</div>
+<!-- Subs: <%#= @link.subs.map { |sub| sub.name }.join(", ") %><br> -->
+<% comments_list = @link.comments_by_parent %>
+<% unless comments_list[nil].count == 0 %>
+	<% comments_list[nil].each do |top_comment| %>
+	  <% padding = 20 %>
+	  <div style="padding-left: <%=padding%>px;">
+	    <%= render partial: "links/comment",
+	     locals: { comment: top_comment, comments_list: comments_list, padding: padding + 20 } %>
+	  </div>
+	  <% end %>
+<% end %>

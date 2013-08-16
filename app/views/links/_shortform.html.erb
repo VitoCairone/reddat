@@ -1,5 +1,8 @@
 <li>[<%= link_to "#{@link.id}", link_url(@link) %>]
 	<%= link_to "#{@link.title}", @link.url %>
+
+	<%= render "links/show_votes" %>
+
   <br>
 	<%= @link.text %>
 </li>

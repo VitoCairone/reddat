@@ -8,7 +8,9 @@
 	<%= f.label :text %>:
 	<%= f.text_field :text %><br>
 
-	<%= render "show_votes" %>
+	<% unless @link.id == nil %>
+	  <%= render "show_votes" %>
+	<% end %>
 
 	<!-- Sub Selection -->
 	<% Sub.all.each do |sub| %>

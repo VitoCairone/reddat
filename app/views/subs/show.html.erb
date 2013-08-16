@@ -1,11 +1,12 @@
-<h1><%= @sub.name %> Sub</h1>
+<h1><%= @sub.name %> Links Index</h1>
 
-<% @links = @sub.links %>
+<% @links = @sub.links.order("(upvotes - downvotes) DESC") %>
 <ul>
-<% @links.each do |link| %>
-  <% @link = link %>
-	<%= render "links/shortform" %>
-<% end %>
+	<!-- .order cannot be applied after .all, but works on the class object -->
+	<% @links.each do |link| %>
+	  <% @link = link %>
+		<%= render "links/link_with_comments" %>
+	<% end %>
 </ul>
 
-<%= link_to "Edit", edit_sub_url %>
+<%= link_to "Add Link", new_link_url %>

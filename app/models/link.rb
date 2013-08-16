@@ -11,11 +11,8 @@ class Link < ActiveRecord::Base
   has_many :comments
 
   def comments_by_parent
-    puts "self = #{self}"
-    puts "self.comments = #{self.comments}"
     comments_hash = Hash.new([])
     self.comments.each do |comment|
-      # must use += [], NOT <<
       comments_hash[comment.parent_comment_id] += [comment]
     end
     comments_hash
@@ -27,9 +24,11 @@ class Link < ActiveRecord::Base
   # need never generate SQL queries to check vote values.
   def vote_up
     self.upvotes += 1
+    self.save!
   end
 
   def vote_down
     self.downvotes += 1
+    self.save!
   end
 end

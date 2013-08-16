@@ -1,2 +1,4 @@
-Votes: <font color="green"><b><%= @link.upvotes || 0 %></b></font> up,
-			 <font color="red"><b><%= @link.downvotes || 0%></b></font> down<br>
+<font color="green"><b><%= @link.upvotes || 0 %></b></font>
+<%= link_to "&#x2191;".html_safe, upvote_link_url(@link) %>,
+<font color="red"><b><%= @link.downvotes || 0%></b></font>
+<%= link_to "&#x2193;".html_safe, downvote_link_url(@link) %>
