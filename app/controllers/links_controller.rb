@@ -71,7 +71,9 @@ class LinksController < ApplicationController
       flash[:errors] << "You have already voted for that link."
     else
       @link.vote_up
-      UserVote.create!(user_id: @current_user.id, link_id: @link.id)
+      UserVote.create!(user_id: @current_user.id,
+                       link_id: @link.id,
+                       is_upvote: true)
     end
     redirect_to :back
   end
@@ -83,7 +85,9 @@ class LinksController < ApplicationController
       flash[:errors] << "You have already voted for that link."
     else
       @link.vote_down
-      UserVote.create!(user_id: @current_user.id, link_id: @link.id)
+      UserVote.create!(user_id: @current_user.id,
+                       link_id: @link.id,
+                       is_upvote: false)
     end
     redirect_to :back
   end

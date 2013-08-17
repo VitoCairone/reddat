@@ -1,4 +1,19 @@
+<% @current_user ||= nil %>
+<% vote = @link.vote_of(@current_user) %>
+<% upvoted = vote && vote.is_upvote %>
 <font color="green"><b><%= @link.upvotes || 0 %></b></font>
-<%= link_to "&#x2191;".html_safe, upvote_link_url(@link) %>,
+
+<a href="<%=upvote_link_url(@link)%>">
+	<%if vote && upvoted%><font color="red"><%end%>
+	&#x2191;
+	<%if vote && upvoted%></font><% end%>
+</a>
+<!-- <%#= link_to "&#x2191;".html_safe, upvote_link_url(@link) %> -->,
+
 <font color="red"><b><%= @link.downvotes || 0%></b></font>
-<%= link_to "&#x2193;".html_safe, downvote_link_url(@link) %>
+<a href="<%=upvote_link_url(@link)%>">
+	<%if vote && !upvoted%><font color="red"><%end%>
+	&#x2193;
+  <%if vote && !upvoted%></font><% end%>
+</a>
+<!-- <%#= link_to "&#x2193;".html_safe, downvote_link_url(@link) %> -->

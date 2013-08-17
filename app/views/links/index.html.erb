@@ -2,7 +2,7 @@
 
 <ul>
 	<!-- .order cannot be applied after .all, but works on the class object -->
-	<% Link.order("(upvotes - downvotes) DESC").each do |link| %>
+	<% Link.includes(:user_votes).order("(upvotes - downvotes) DESC").each do |link| %>
 	  <% @link = link %>
 		<%= render "links/link_with_comments" %>
 	<% end %>

@@ -4,11 +4,18 @@ class Link < ActiveRecord::Base
 
   has_many :sub_links, dependent: :destroy
 
+  has_many :user_votes, dependent: :destroy
+
   has_many :subs, through: :sub_links
 
   has_many :readers, through: :subs, source: :members
 
   has_many :comments
+
+  def vote_of(user)
+    return false if user.nil?
+    self.user_votes.find_by_user_id(user.id)
+  end
 
   def comments_by_parent
     comments_hash = Hash.new([])
